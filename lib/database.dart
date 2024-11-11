@@ -13,4 +13,19 @@ class Database {
   static Future<Stream<QuerySnapshot>> getEmloyeeDetails() async {
     return await FirebaseFirestore.instance.collection("Employee").snapshots();
   }
+
+  static Future updateEmployeeDetails(
+      String id, Map<String, dynamic> updateInfo) async {
+    return await FirebaseFirestore.instance
+        .collection("Employee")
+        .doc(id)
+        .update(updateInfo);
+  }
+
+  static Future deleteEmployeeDetails(String id) async {
+    return await FirebaseFirestore.instance
+        .collection("Employee")
+        .doc(id)
+        .delete();
+  }
 }
